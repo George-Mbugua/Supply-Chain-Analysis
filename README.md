@@ -5,14 +5,10 @@ import seaborn as sns
 
 ```
 
-
 ```python
 df = pd.read_csv("supply_chain_dataset.csv")
 df.head()
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -26,8 +22,8 @@ df.head()
 
     .dataframe thead th {
         text-align: right;
-    }
-</style>
+    }`</style>`
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -181,15 +177,9 @@ df.head()
 <p>5 rows × 24 columns</p>
 </div>
 
-
-
-
 ```python
 df.tail()
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -203,8 +193,8 @@ df.tail()
 
     .dataframe thead th {
         text-align: right;
-    }
-</style>
+    }`</style>`
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -358,20 +348,11 @@ df.tail()
 <p>5 rows × 24 columns</p>
 </div>
 
-
-
-
 ```python
 df.shape
 ```
 
-
-
-
     (100, 24)
-
-
-
 
 ```python
 df.info()
@@ -380,43 +361,38 @@ df.info()
     <class 'pandas.core.frame.DataFrame'>
     RangeIndex: 100 entries, 0 to 99
     Data columns (total 24 columns):
-     #   Column                   Non-Null Count  Dtype  
-    ---  ------                   --------------  -----  
-     0   Product type             100 non-null    object 
-     1   SKU                      100 non-null    object 
+     #   Column                   Non-Null Count  Dtype
+    ---  ------                   --------------  -----
+    0   Product type             100 non-null    object
+     1   SKU                      100 non-null    object
      2   Price                    100 non-null    float64
-     3   Availability             100 non-null    int64  
-     4   Number of products sold  100 non-null    int64  
-     5   Revenue generated        100 non-null    float64
-     6   Customer demographics    100 non-null    object 
-     7   Stock levels             100 non-null    int64  
-     8   Lead times               100 non-null    int64  
-     9   Order quantities         100 non-null    int64  
-     10  Shipping times           100 non-null    int64  
-     11  Shipping carriers        100 non-null    object 
+     3   Availability             100 non-null    int64
+    4   Number of products sold  100 non-null    int64
+    5   Revenue generated        100 non-null    float64
+     6   Customer demographics    100 non-null    object
+     7   Stock levels             100 non-null    int64
+    8   Lead times               100 non-null    int64
+    9   Order quantities         100 non-null    int64
+    10  Shipping times           100 non-null    int64
+    11  Shipping carriers        100 non-null    object
      12  Shipping costs           100 non-null    float64
-     13  Supplier name            100 non-null    object 
-     14  Location                 100 non-null    object 
-     15  Lead time                100 non-null    int64  
-     16  Production volumes       100 non-null    int64  
-     17  Manufacturing lead time  100 non-null    int64  
-     18  Manufacturing costs      100 non-null    float64
-     19  Inspection results       100 non-null    object 
+     13  Supplier name            100 non-null    object
+     14  Location                 100 non-null    object
+     15  Lead time                100 non-null    int64
+    16  Production volumes       100 non-null    int64
+    17  Manufacturing lead time  100 non-null    int64
+    18  Manufacturing costs      100 non-null    float64
+     19  Inspection results       100 non-null    object
      20  Defect rates             100 non-null    float64
-     21  Transportation modes     100 non-null    object 
-     22  Routes                   100 non-null    object 
+     21  Transportation modes     100 non-null    object
+     22  Routes                   100 non-null    object
      23  Costs                    100 non-null    float64
     dtypes: float64(6), int64(9), object(9)
     memory usage: 18.9+ KB
-    
-
 
 ```python
 df.describe()
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -430,8 +406,8 @@ df.describe()
 
     .dataframe thead th {
         text-align: right;
-    }
-</style>
+    }`</style>`
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -602,10 +578,7 @@ df.describe()
 </table>
 </div>
 
-
-
 ## Data Cleaning
-
 
 ```python
 # Checking for duplicate rows
@@ -614,17 +587,12 @@ print(f'Duplicate rows = {duplicates.sum()}')
 ```
 
     Duplicate rows = 0
-    
-
 
 ```python
 # Checking for missing data
 df.isnull().sum()
 
 ```
-
-
-
 
     Product type               0
     SKU                        0
@@ -652,10 +620,7 @@ df.isnull().sum()
     Costs                      0
     dtype: int64
 
-
-
 I will check for outliers using the Z-score method, values that are more than 3 standard deviations away from the mean will be considered outliers.
-
 
 ```python
 # CheckING for outliers using the Z-score method
@@ -665,74 +630,72 @@ print(f'Outliers:\n{outliers}')
 ```
 
     Outliers:
-        Availability  Costs  Customer demographics  Defect rates  \
-    0          False  False                  False         False   
-    1          False  False                  False         False   
-    2          False  False                  False         False   
-    3          False  False                  False         False   
-    4          False  False                  False         False   
-    ..           ...    ...                    ...           ...   
-    95         False  False                  False         False   
-    96         False  False                  False         False   
-    97         False  False                  False         False   
-    98         False  False                  False         False   
-    99         False  False                  False         False   
-    
-        Inspection results  Lead time  Lead times  Location  Manufacturing costs  \
-    0                False      False       False     False                False   
-    1                False      False       False     False                False   
-    2                False      False       False     False                False   
-    3                False      False       False     False                False   
-    4                False      False       False     False                False   
-    ..                 ...        ...         ...       ...                  ...   
-    95               False      False       False     False                False   
-    96               False      False       False     False                False   
-    97               False      False       False     False                False   
-    98               False      False       False     False                False   
-    99               False      False       False     False                False   
-    
-        Manufacturing lead time  ...  Production volumes  Revenue generated  \
-    0                     False  ...               False              False   
-    1                     False  ...               False              False   
-    2                     False  ...               False              False   
-    3                     False  ...               False              False   
-    4                     False  ...               False              False   
-    ..                      ...  ...                 ...                ...   
-    95                    False  ...               False              False   
-    96                    False  ...               False              False   
-    97                    False  ...               False              False   
-    98                    False  ...               False              False   
-    99                    False  ...               False              False   
-    
-        Routes    SKU  Shipping carriers  Shipping costs  Shipping times  \
-    0    False  False              False           False           False   
-    1    False  False              False           False           False   
-    2    False  False              False           False           False   
-    3    False  False              False           False           False   
-    4    False  False              False           False           False   
-    ..     ...    ...                ...             ...             ...   
-    95   False  False              False           False           False   
-    96   False  False              False           False           False   
-    97   False  False              False           False           False   
-    98   False  False              False           False           False   
-    99   False  False              False           False           False   
-    
-        Stock levels  Supplier name  Transportation modes  
-    0          False          False                 False  
-    1          False          False                 False  
-    2          False          False                 False  
-    3          False          False                 False  
-    4          False          False                 False  
-    ..           ...            ...                   ...  
-    95         False          False                 False  
-    96         False          False                 False  
-    97         False          False                 False  
-    98         False          False                 False  
-    99         False          False                 False  
-    
-    [100 rows x 24 columns]
-    
+        Availability  Costs  Customer demographics  Defect rates
+    0          False  False                  False         False
+    1          False  False                  False         False
+    2          False  False                  False         False
+    3          False  False                  False         False
+    4          False  False                  False         False
+    ..           ...    ...                    ...           ...
+    95         False  False                  False         False
+    96         False  False                  False         False
+    97         False  False                  False         False
+    98         False  False                  False         False
+    99         False  False                  False         False
 
+    Inspection results  Lead time  Lead times  Location  Manufacturing costs
+    0                False      False       False     False                False
+    1                False      False       False     False                False
+    2                False      False       False     False                False
+    3                False      False       False     False                False
+    4                False      False       False     False                False
+    ..                 ...        ...         ...       ...                  ...
+    95               False      False       False     False                False
+    96               False      False       False     False                False
+    97               False      False       False     False                False
+    98               False      False       False     False                False
+    99               False      False       False     False                False
+
+    Manufacturing lead time  ...  Production volumes  Revenue generated
+    0                     False  ...               False              False
+    1                     False  ...               False              False
+    2                     False  ...               False              False
+    3                     False  ...               False              False
+    4                     False  ...               False              False
+    ..                      ...  ...                 ...                ...
+    95                    False  ...               False              False
+    96                    False  ...               False              False
+    97                    False  ...               False              False
+    98                    False  ...               False              False
+    99                    False  ...               False              False
+
+    Routes    SKU  Shipping carriers  Shipping costs  Shipping times
+    0    False  False              False           False           False
+    1    False  False              False           False           False
+    2    False  False              False           False           False
+    3    False  False              False           False           False
+    4    False  False              False           False           False
+    ..     ...    ...                ...             ...             ...
+    95   False  False              False           False           False
+    96   False  False              False           False           False
+    97   False  False              False           False           False
+    98   False  False              False           False           False
+    99   False  False              False           False           False
+
+    Stock levels  Supplier name  Transportation modes
+    0          False          False                 False
+    1          False          False                 False
+    2          False          False                 False
+    3          False          False                 False
+    4          False          False                 False
+    ..           ...            ...                   ...
+    95         False          False                 False
+    96         False          False                 False
+    97         False          False                 False
+    98         False          False                 False
+    99         False          False                 False
+
+    [100 rows x 24 columns]
 
 ```python
 # Calculating the IQR for each column
@@ -744,9 +707,6 @@ IQR = Q3 - Q1
 outliers = (df < (Q1 - 1.5 * IQR)) | (df > (Q3 + 1.5 * IQR))
 outliers
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -760,8 +720,8 @@ outliers
 
     .dataframe thead th {
         text-align: right;
-    }
-</style>
+    }`</style>`
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1059,21 +1019,14 @@ outliers
 <p>100 rows × 24 columns</p>
 </div>
 
-
-
 ## Data Exploration
 
 ### Correlation Matrix
-
-
 
 ```python
 corr_matrix =df.corr()
 corr_matrix
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -1087,8 +1040,8 @@ corr_matrix
 
     .dataframe thead th {
         text-align: right;
-    }
-</style>
+    }`</style>`
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1385,9 +1338,6 @@ corr_matrix
 </table>
 </div>
 
-
-
-
 ```python
 #Visualizing the matrix
 plt.figure(figsize=(10, 8))
@@ -1395,13 +1345,10 @@ sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
 plt.show()
 ```
 
-
-    
 ![png](Supply-Chain-Analysis_files/Supply-Chain-Analysis_15_0.png)
-    
-
 
 Observations:
+
 - There is a strong negative correlation between Price and Manufacturing lead time (-0.301), indicating that as the price of a product increases, the manufacturing lead time tends to decrease.
 - There is also a strong negative correlation between Revenue generated and Manufacturing costs (-0.214), indicating that as the revenue generated by a product increases, the manufacturing costs tend to decrease.
 - Lead time has a strong positive correlation with Defect rates (0.297), indicating that as the lead time for a product increases, the defect rates also tend to increase.
@@ -1412,16 +1359,12 @@ Observations:
 
 This will provide information about which products are most popular and profitable.
 
-
 ```python
 # Calculating the number of products sold by product type and SKU
 top_20_skus = df.groupby('SKU')['Number of products sold'].sum().sort_values(ascending=False).head(20)
 top_20_skus = top_20_skus.reset_index()
 top_20_skus
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -1435,8 +1378,8 @@ top_20_skus
 
     .dataframe thead th {
         text-align: right;
-    }
-</style>
+    }`</style>`
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1550,9 +1493,6 @@ top_20_skus
 </table>
 </div>
 
-
-
-
 ```python
 # Creating a bar plot
 fig, ax = plt.subplots()
@@ -1563,16 +1503,11 @@ ax.set_ylabel('Number of Products Sold')
 plt.show()
 ```
 
-
-    
 ![png](Supply-Chain-Analysis_files/Supply-Chain-Analysis_20_0.png)
-    
-
 
 #### 2. Price and availability
 
 This will provide information on how pricing and inventory management strategies impact sales and revenue.
-
 
 ```python
 # Calculating the average price and availability by product type
@@ -1580,9 +1515,6 @@ price_availability = df.groupby('Product type')[['Price', 'Availability']].mean(
 price_availability = price_availability.reset_index()
 price_availability
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -1596,8 +1528,8 @@ price_availability
 
     .dataframe thead th {
         text-align: right;
-    }
-</style>
+    }`</style>`
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1630,9 +1562,6 @@ price_availability
 </table>
 </div>
 
-
-
-
 ```python
 # Creating a bar plot
 fig, ax = plt.subplots()
@@ -1643,16 +1572,11 @@ ax.set_ylabel('Price and Availability')
 plt.show()
 ```
 
-
-    
 ![png](Supply-Chain-Analysis_files/Supply-Chain-Analysis_24_0.png)
-    
-
 
 #### 3. Number of products sold and revenue generated
 
 This will provide information about sales performance and can help understand which products are driving revenue and growth.
-
 
 ```python
 # Calculating the total number of products sold and revenue generated by product type
@@ -1660,9 +1584,6 @@ sales_revenue = df.groupby('Product type')[['Number of products sold', 'Revenue 
 sales_revenue = sales_revenue.reset_index()
 sales_revenue
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -1676,8 +1597,8 @@ sales_revenue
 
     .dataframe thead th {
         text-align: right;
-    }
-</style>
+    }`</style>`
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1710,9 +1631,6 @@ sales_revenue
 </table>
 </div>
 
-
-
-
 ```python
 # Creating a bar plot
 fig, ax = plt.subplots()
@@ -1723,16 +1641,11 @@ ax.set_ylabel('Number of Products Sold and Revenue Generated')
 plt.show()
 ```
 
-
-    
 ![png](Supply-Chain-Analysis_files/Supply-Chain-Analysis_28_0.png)
-    
-
 
 #### 4. Customer demographics
 
 This will provide more information about the characteristics of customers hence help understand their needs and preferences.
-
 
 ```python
 # Calculating the number of products sold by customer demographics
@@ -1740,9 +1653,6 @@ customer_sales = df.groupby(['Customer demographics', 'Product type'])['Number o
 customer_sales = customer_sales.reset_index()
 customer_sales
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -1756,8 +1666,8 @@ customer_sales
 
     .dataframe thead th {
         text-align: right;
-    }
-</style>
+    }`</style>`
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1844,9 +1754,6 @@ customer_sales
 </table>
 </div>
 
-
-
-
 ```python
 # Creating a bar plot
 fig, ax = plt.subplots()
@@ -1857,16 +1764,11 @@ ax.set_ylabel('Number of Products Sold')
 plt.show()
 ```
 
-
-    
 ![png](Supply-Chain-Analysis_files/Supply-Chain-Analysis_32_0.png)
-    
-
 
 #### 5. Stock levels, lead times, and order quantities
 
-This will more provide information about inventory management and can help optimize the Supply Chain to ensure that products are available when customers want them. 
-
+This will more provide information about inventory management and can help optimize the Supply Chain to ensure that products are available when customers want them.
 
 ```python
 # Calculating the average stock levels, lead times, and order quantities by product type
@@ -1874,9 +1776,6 @@ inventory_metrics = df.groupby('Product type')[['Stock levels', 'Lead times', 'O
 inventory_metrics = inventory_metrics.reset_index()
 inventory_metrics
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -1890,8 +1789,8 @@ inventory_metrics
 
     .dataframe thead th {
         text-align: right;
-    }
-</style>
+    }`</style>`
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1928,9 +1827,6 @@ inventory_metrics
 </table>
 </div>
 
-
-
-
 ```python
 # Creating a bar plot
 fig, ax = plt.subplots()
@@ -1941,16 +1837,11 @@ ax.set_ylabel('Stock Levels, Lead Times, and Order Quantities')
 plt.show()
 ```
 
-
-    
 ![png](Supply-Chain-Analysis_files/Supply-Chain-Analysis_36_0.png)
-    
-
 
 #### 6. Location, Production volumes, Manufacturing lead time, Manufacturing costs
 
 These will provide more information about the production process and can help identify opportunities to improve efficiency and reduce costs.
-
 
 ```python
 # Calculate the average production volumes, manufacturing lead time, and manufacturing costs by location
@@ -1958,9 +1849,6 @@ production_metrics = df.groupby('Location')[['Production volumes', 'Manufacturin
 production_metrics = production_metrics.reset_index()
 production_metrics
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -1974,8 +1862,8 @@ production_metrics
 
     .dataframe thead th {
         text-align: right;
-    }
-</style>
+    }`</style>`
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2026,9 +1914,6 @@ production_metrics
 </table>
 </div>
 
-
-
-
 ```python
 # Create a bar plot
 fig, ax = plt.subplots()
@@ -2039,23 +1924,15 @@ ax.set_ylabel('Production Volumes, Manufacturing Lead Time, and Manufacturing Co
 plt.show()
 ```
 
-
-    
 ![png](Supply-Chain-Analysis_files/Supply-Chain-Analysis_40_0.png)
-    
-
 
 #### 7. Shipping Costs
-
 
 ```python
 shipping= df.groupby('Shipping carriers')['Shipping costs'].sum()
 shipping = shipping.reset_index()
 shipping 
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -2069,8 +1946,8 @@ shipping
 
     .dataframe thead th {
         text-align: right;
-    }
-</style>
+    }`</style>`
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2099,9 +1976,6 @@ shipping
 </table>
 </div>
 
-
-
-
 ```python
 # Creating a bar plot
 fig, ax = plt.subplots()
@@ -2112,12 +1986,7 @@ ax.set_ylabel('Shipping Costs')
 plt.show()
 ```
 
-
-    
 ![png](Supply-Chain-Analysis_files/Supply-Chain-Analysis_43_0.png)
-    
-
-
 
 ```python
 
